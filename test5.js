@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var express = require('express');
 var mustacheExpress = require('mustache-express');
 
+
 function openConnection(){
 	return mysql.createConnection({
 	  host     : 'sql7.freemysqlhosting.net',
@@ -13,14 +14,14 @@ function openConnection(){
 }
 
 function getData4(connection, keywork, callback){
-	query1='delete from Travailleur where Travailleur.Prenom like "' + prenom1 + '" and Travailleur.Nom like "' + nom1 + '" and Travailleur.Numeropersonel=' + numeropersonel1 + ' and Travailleur.Telephone=' + telephone1 + ' and Travailleur.Email="' + email1 + '"  and Travailleur.Adresse="' + adresse1 + '" and Travailleur.Matiere="' + matiere1 + '" and Travailleur.Numerocompte="' + numerocompte1 + '" and Travailleur.Dateembauche=' + dateembauche1 + ' and Travailleur.Datefin=' + datefin1 + ''
+	query1='delete from Travailleur where Travailleur.Prenom like "' + prenom1 + '" and Travailleur.Nom like "' + nom1 + '" and Travailleur.Numeropersonel=' + numeropersonel1 + ' and Travailleur.Telephone=' + telephone1 + ' and Travailleur.Email="' + email1 + '"  and Travailleur.Adresse="' + adresse1 + '" and Travailleur.Matiere="' + matiere1 + '" and Travailleur.Numerocompte="' + numerocompte1 + '" and Travailleur.Dateembauche="' + dateembauche1 + '" and Travailleur.Datefin="' + datefin1 + '" '
 	console.log(query1)
 	connection.query(query1, callback);
 }
 
 
 function getData3(connection, keywork, callback){
-	query1='insert into Travailleur(Prenom,Nom,Numeropersonel,Telephone,Email,Adresse,Matiere,Numerocompte,Dateembauche,Datefin) values ("' + prenom1 + '", "' + nom1 + '", ' + numeropersonel1 + ', ' + telephone1 + ', "' + email1 + '", "' + adresse1 + '", "' + matiere1 + '", "' + numerocompte1 + '", DATE("' + dateembauche1 + '"), DATE("' + datefin1 + '"))'
+	query1='insert into Travailleur(Prenom,Nom,Numeropersonel,Telephone,Email,Adresse,Matiere,Numerocompte,Dateembauche,Datefin) values ("' + prenom1 + '", "' + nom1 + '", ' + numeropersonel1 + ', ' + telephone1 + ', "' + email1 + '", "' + adresse1 + '", "' + matiere1 + '", "' + numerocompte1 + '", "' + dateembauche1 + '", "' + datefin1 + '")'
 	console.log(query1)
 	connection.query(query1, callback);
 }
@@ -52,10 +53,57 @@ function getData6(connection, keywork, callback){
 	connection.query(query1, callback);
 }
 
+function getData8(connection, keywork, callback){
+	query1='delete from Client where Mission.Heure_debut like "' + datetimedebut + '" and Mission.Heure_fin like "' + datetimefin + '" and Mission.PrenomTravailleur like "' + prenomtravailleur + '" and Mission.NomTravailleur like "' + nomtravailleur + '" and Mission.PrenomEleve like "' + prenomeleve3 + '" and Mission.NomEleve like "' + nomeleve3 + '" and Mission.PrenomClient like "' + prenomclient3 + '" and Mission.NomClient like "' + nomclient3 + '" and Mission.Matiere="' + matiere3 + '" '
+	console.log(query1)
+	connection.query(query1, callback);
+}
+
+
+function getData10(connection, keywork, callback){
+	query1='insert into Mission(Heure_debut,Heure_fin,PrenomTravailleur,NomTravailleur,PrenomEleve,NomEleve,PrenomClient,NomClient,Matiere) values ("' + datetimedebut + '", "' + datetimefin + '", "' + prenomtravailleur + '", "' + nomtravailleur + '", "' + prenomeleve3 + '", "' + nomeleve3 + '", "' + prenomclient3 + '", "' + nomclient3 + '", "' + matiere3 + '")'
+	console.log(query1)
+	connection.query(query1, callback);
+}
+
+
+function getData9(connection, keywork, callback){
+	query1='SELECT Heure_debut as Heure_debut, Heure_fin as Heure_fin,PrenomTravailleur as PrenomTravailleur,NomTravailleur as NomTravailleur,PrenomEleve as PrenomEleve,NomEleve as NomEleve,PrenomClient as PrenomClient,NomClient as NomClient,Matiere as Matiere FROM Mission'
+	console.log(query1)
+	connection.query(query1, callback);
+}
+
+function checkAuth(req, res, next) {
+  if (!req.session.user_id) {
+    res.send('You are not authorized to view this page');
+  } else {
+    next();
+  }
+}
+
 var app = express();
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
+
+app.get('/my_secret_page', checkAuth, function (req, res) {
+  res.send('if you are viewing this page it means you are logged in');
+});
+
+app.post('/login', function (req, res) {
+  var post = req.body;
+  if (post.user === 'john' && post.password === 'johnspassword') {
+    req.session.user_id = johns_user_id_here;
+    res.redirect('/my_secret_page');
+  } else {
+    res.send('Bad user/pass');
+  }
+});
+
+app.get('/logout', function (req, res) {
+  delete req.session.user_id;
+  res.redirect('/login');
+});     
  
 app.get('/', function (req, res) {
 
@@ -82,15 +130,24 @@ app.get('/', function (req, res) {
 	adresse2 = req.query['adresse2']
 	matiere2 = req.query['matiere2']
 
+	datetimedebut = req.query['datetimedebut']
+	datetimefin = req.query['datetimefin']
+	prenomtravailleur=req.query['prenomtravailleur']
+	nomtravailleur=req.query['nomtravailleur']
+	prenomclient3 = req.query['prenomclient3']
+	nomclient3 = req.query['nomclient3']
+	prenomeleve3 = req.query['prenomeleve3']
+	nomeleve3 = req.query['nomeleve3']
+	matiere3 = req.query['matiere3']
 	
 
 	var fonctionRetour4 = function(err, results, fields){
-		  getData6(connection, keywork, fonctionRetour6);	
+		  getData9(connection, keywork, fonctionRetour9);	
 
 	};
 
 	var fonctionRetour3 = function(err, results, fields){
-		  getData6(connection, keywork, fonctionRetour6);	
+		  getData9(connection, keywork, fonctionRetour9);	
 
 	};
 	
@@ -117,6 +174,7 @@ app.get('/', function (req, res) {
 				res.render('test5.html', {
 						data1: dataAsString1,
 						data2: dataAsString2,
+						data3: dataAsString3,
 								
 				});
 				connection.end();
@@ -126,12 +184,12 @@ app.get('/', function (req, res) {
 	};
 	
 	var fonctionRetour5 = function(err, results, fields){
-		  getData6(connection, keywork, fonctionRetour6);	
+		  getData9(connection, keywork, fonctionRetour9);	
 
 	};
 
 	var fonctionRetour7 = function(err, results, fields){
-		  getData6(connection, keywork, fonctionRetour6);	
+		  getData9(connection, keywork, fonctionRetour9);	
 
 	};
 	
@@ -161,6 +219,42 @@ app.get('/', function (req, res) {
 	
 	};	
 
+	var fonctionRetour8 = function(err, results, fields){
+		  getData9(connection, keywork, fonctionRetour9);	
+
+	};
+
+	var fonctionRetour10 = function(err, results, fields){
+		  getData9(connection, keywork, fonctionRetour9);	
+
+	};
+	
+	var fonctionRetour9 = function(err, results, fields){
+		  if(err){
+		  	console.log(err);
+		  }
+		 	
+		 else {
+
+//	 		console.log(results)
+				
+	 			var data3 = []
+	 			
+	 			for (var i in results) {
+	 			data3.push([results[i].Heure_debut, results[i].Heure_fin, results[i].PrenomTravailleur, results[i].NomTravailleur, results[i].PrenomEleve, results[i].NomEleve, results[i].PrenomClient, results[i].NomClient, results[i].Matiere])
+	 			
+	 	  		}
+				dataAsString3 = JSON.stringify(data3)
+
+				console.log(dataAsString3);
+				
+				
+				getData6(connection, keywork, fonctionRetour6);
+		
+			};
+	
+	};
+
  	
  if  ((req.query['del'])||(req.query['initiate'])) {
 	 if (req.query['del']){
@@ -172,7 +266,7 @@ app.get('/', function (req, res) {
 		}
 		else {
 
-			getData6(connection, keywork, fonctionRetour6);	
+			getData9(connection, keywork, fonctionRetour9);	
 			
 		}
 		
@@ -189,13 +283,29 @@ app.get('/', function (req, res) {
 		}
 		else {
 
-			getData6(connection, keywork, fonctionRetour6);	
+			getData9(connection, keywork, fonctionRetour9);	
 			
 		}
 		
 	 }
  	}
- 	else getData6(connection, keywork, fonctionRetour6);		
+ 	else if ((req.query['del3'])||(req.query['initiate3'])) {
+ 		if (req.query['del3']){
+ 			getData8(connection, keywork, fonctionRetour8);	
+ 		}
+ 		else {
+ 			if (req.query['initiate3']){
+				getData10(connection, keywork, fonctionRetour10);		
+			}
+			else {
+				getData9(connection, keywork, fonctionRetour9);	
+			}
+ 		}
+ 	}
+
+
+
+ 	else getData9(connection, keywork, fonctionRetour9);		
  }
 
 
@@ -224,9 +334,9 @@ app.listen( app.get( 'port' ), function() {
 // arbetare data 4 del, data1 show, data3 add 
 // kund  data5 del, data6 show, data7 add
 // mission data8 del, data9 show, data10 add 
-// si del:4->6->1      sinon si initiate->3->6->1     sinon 6->1  exit 
-// si del2:5->6->1 	sinon si initiate2:7->6->1     sinon 6->1  exit
-// si del3->8->9     sinon si initiate3->10->9     sinon 9 exit
+// si del:4->(9)->6->1      sinon si initiate->3->(9)->6->1     sinon (9)->6->1  exit 
+// si del2:5->(9)->6->1 	sinon si initiate2:7->(9)->6->1     sinon (9)->6->1  exit
+// si del3->8->9->6->1     sinon si initiate3->10->9->6->1     sinon 9->6->1 exit
 
 /*if (req.query['del'] || req.query['initiate']){
 
