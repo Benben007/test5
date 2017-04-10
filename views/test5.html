@@ -19,6 +19,7 @@
     <script>
     	var data1 = {{{data1}}};
       var data2 = {{{data2}}};
+      var data3 = {{{data3}}};
       
     </script>
 
@@ -105,26 +106,6 @@
                   <input class="form-control" type="string" name="adresse1" placeholder="vgatan 20 90785 Stockholm" id="example-number-input">
                 </div>
             </div>
-
-    <!--   <div class="form-group row">
-            <label for="example-number-input" class="col-xs-2 col-form-label">Matiere</label>
-            <div class="col-xs-10">
-                <input class="form-control" type="text" name="matiere1" list="citynames">
-                <datalist id="citynames">
-                    <option value="Boston">
-                    <option value="Cambridge">
-                </datalist>
-                <input class="form-control" type="text" name="matiere2" list="citynames">
-                <datalist id="citynames">
-                    <option value="Boston">
-                    <option value="Cambridge">
-                </datalist>
-            </div>
-        </div> -->
-
-        
-
-
               <div style="display:table-row; width:100%; margin-bottom:10px; padding-bottom:5px; padding-left:5px; ">   
                       <div style="position:relative; display:table-cell; width:50%">Ämne:</div>
                         <div style="position:relative; display:table-cell; width:50%;">
@@ -182,10 +163,7 @@
                             </datalist>
                         </div>
                      </div> 
-
-        <div style="padding-top:10px; padding-left:5px; padding-right:10px; padding-bottom:30px;">
-                                                                                                                                                                                                          </div>
-
+        <!--<div style="padding-top:10px; padding-left:5px; padding-right:10px; padding-bottom:30px;"></div>-->
             <div class="form-group row">
                 <label for="example-number-input" class="col-xs-2 col-form-label">Numerocompte:</label>
                 <div class="col-xs-10">
@@ -195,13 +173,13 @@
             <div class="form-group row">
                 <label for="example-number-input" class="col-xs-2 col-form-label">Dateembauche:</label>
                 <div class="col-xs-10">
-                  <input class="form-control" type="date" value="0" name="dateembauche1" step="1" id="example-number-input">
+                  <input class="form-control" type="datetime-local" value="0" name="dateembauche1" step="1" id="example-number-input">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-number-input" class="col-xs-2 col-form-label">Datefin:</label>
                 <div class="col-xs-10">
-                  <input class="form-control" type="date" value="0" name="datefin1" step="1" id="example-number-input">
+                  <input class="form-control" type="datetime-local" value="0" name="datefin1" step="1" id="example-number-input">
                 </div>
             </div>
                
@@ -220,11 +198,8 @@
         <br/><br/>
         <p>The result is <strong>{{{data1}}}</strong></p>
           <div id="table_div"></div>
-
-          
       </div>
       <div id="menu1" class="tab-pane fade in active">
-       
             <h3>Menu 1</h3>
             <!--<table align="center" border="1"> -->
             <form name="Form">
@@ -331,11 +306,8 @@
                             </datalist>
                         </div>
                      </div> 
-
-        <div style="padding-top:10px; padding-left:5px; padding-right:10px; padding-bottom:30px;">
-               
+        <!--<div style="padding-top:10px; padding-left:5px; padding-right:10px; padding-bottom:30px;">-->
             <input type="hidden" name="initiate2" value="start"><br/>
-            
             <div class="checkbox">
                 <label>
                   <input type="checkbox" name="del2"> Delete
@@ -344,16 +316,143 @@
             <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
                       <!---<input type="hidden" name="del" value="del"><br/>
           <button type="button" value="Del" class="btn btn-primary">Delete</button> -->
-        </form> 
-
-        <br/><br/>
+            </form>
+          <br/><br/>
           <p>The result is <strong>{{{data2}}}</strong>. The total amount in the month is <strong>{{{data2}}}</strong>.</p>
-          <div id="table2_div"></div>  
-      </div>
-      
+          <div id="table2_div"></div>
+      </div>  
       <div id="menu2" class="tab-pane fade in active">
+            <h3>MENU2</h3>
+            <form name="Form">
+            <div class="form-group row">
+                <label for="example-number-input" class="col-xs-2 col-form-label">Date debut:</label>
+                <div class="col-xs-10">
+                  <input class="form-control" type="datetime-local" value="0" name="datetimedebut" id="example-number-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-number-input" class="col-xs-2 col-form-label">Date Fin:</label>
+                <div class="col-xs-10">
+                  <input class="form-control" type="datetime-local" value="0" name="datetimefin" id="example-number-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-date-input" class="col-xs-2 col-form-label">Prenom Travailleur</label>
+                <div class="col-xs-10">
+                  <input class="form-control" type="string" name="prenomtravailleur" placeholder="ex:Frank" id="example-date-input">
+                </div>
+            </div>
+
+            <div class="form-group row">
+               <label for="example-date-input" class="col-xs-2 col-form-label">Nom Travailleur</label>
+               <div class="col-xs-10">
+                  <input class="form-control" type="string" name="nomtravailleur" placeholder="ex:Frankie" id="example-date-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-date-input" class="col-xs-2 col-form-label">Prenom client</label>
+                <div class="col-xs-10">
+                  <input class="form-control" type="string" name="prenomclient3" placeholder="ex:Frank" id="example-date-input">
+                </div>
+            </div>
+
+            <div class="form-group row">
+               <label for="example-date-input" class="col-xs-2 col-form-label">Nom Client</label>
+               <div class="col-xs-10">
+                  <input class="form-control" type="string" name="nomclient3" placeholder="ex:Frankie" id="example-date-input">
+                </div>
+            </div>
+            <div class="form-group row">
+               <label for="example-date-input" class="col-xs-2 col-form-label">Prenom Eleve</label>
+               <div class="col-xs-10">
+                  <input class="form-control" type="string" name="prenomeleve3" placeholder="ex:Frankie" id="example-date-input">
+                </div>
+            </div>
+            <div class="form-group row">
+               <label for="example-date-input" class="col-xs-2 col-form-label">Nom Eleve</label>
+               <div class="col-xs-10">
+                  <input class="form-control" type="string" name="nomeleve3" placeholder="ex:Frankie" id="example-date-input">
+                </div>
+            </div>
+            <div style="display:table-row; width:100%; margin-bottom:10px; padding-bottom:5px; padding-left:5px; ">   
+                      <div style="position:relative; display:table-cell; width:50%">Ämne:</div>
+                        <div style="position:relative; display:table-cell; width:50%;">
+                          <input class="form-control" type="text" name="matiere3" list="Bio">
+                            <datalist id="Bio">
+                              <option>-None-</option>
+                              <option value="Biologi 1">Biologi 1</option><option value="Biologi 2">Biologi 2</option><option value="Bilogi Högstadiet">Bilogi Högstadiet</option><option value="Biology - Higher level">Biology - Higher level</option><option value="Biology - Standard level">Biology - Standard level</option>
+                              <option value="Aktiekunskap 1">Aktiekunskap 1</option><option value="Beteendevetenskap 1">Beteendevetenskap 1</option>
+                              <option value="Webbutveckling 1">Webbutveckling 1</option><option value="Bokföring 1">Bokföring 1</option><option value="Data 1">Data 1</option>
+                              <option value="Filosofi 1">Filosofi 1</option><option value="Fysik 2">Fysik 2</option><option value="Fysik Högstadiet">Fysik Högstadiet</option>
+                              <option value="Physics - Standard level">Physics - Standard level</option><option value="Physics - Higher level">Physics - Higher level</option>
+                              <option value="Information och kommunikation 2">Information och kommunikation 2</option><option value="Internationella relationer 1">Internationella relationer 1</option><option value="Kulturhistoria 1">Kulturhistoria 1</option><option value="Matematik 1">Matematik 1</option><option value="Matematik 2">Matematik 2</option><option value="Matematik 3">Matematik 3</option><option value="Matematik 4">Matematik 4</option><option value="Matematik 5">Matematik 5</option><option value="Matematik Högstadiet">Matematik Högstadiet</option><option value="Mathematics - Higher level">Mathematics - Higher level</option>
+                              <option value="Mathematics - Standard level">Mathematics - Standard level</option><option value="Mathematics - Studies level">Mathematics - Studies level</option>
+                              <option value="Naturkunskap Högstadiet">Naturkunskap Högstadiet</option><option value="Naturkunskap 1">Naturkunskap 1</option>
+                              <option value="Naturkunskap 2">Naturkunskap 2</option><option value="Privatjuridik 1">Privatjuridik 1</option><option value="Psykologi 1">Psykologi 1</option>
+                              <option value="Samhällskunskap 1">Samhällskunskap 1</option><option value="Samhällskunskap 2">Samhällskunskap 2</option>
+                              <option value="Samhällskunskap Högstadiet">Samhällskunskap Högstadiet</option><option value="Statistik 1">Statistik 1</option>
+                              <option value="Redovisning 1">Redovisning 1</option><option value="Teknik 1">Teknik 1</option><option value="Anatomi 1">Anatomi 1</option>
+                              <option value="Företagsekonomi 1">Företagsekonomi 1</option><option value="Företagsekonomi 2">Företagsekonomi 2</option>
+                              <option value="Historia 1">Historia 1</option><option value="Historia Högstadiet">Historia Högstadiet</option><option value="Historia 2">Historia 2</option>
+                              <option value="History - Standard level">History - Standard level</option><option value="History - Higher level">History - Higher level</option>
+                              <option value="Internationell ekonomi 1">Internationell ekonomi 1</option><option value="Kemi 1">Kemi 1</option><option value="Kemi 2">Kemi 2</option>
+                              <option value="Kemi Högstadiet">Kemi Högstadiet</option><option value="Chemistry - Standard level">Chemistry - Standard level</option>
+                              <option value="Chemistry - Higher level">Chemistry - Higher level</option><option value="Marknadsföring 1">Marknadsföring 1</option>
+                              <option value="Nationalekonomi 1">Nationalekonomi 1</option><option value="Economics - Standard level">Economics - Standard level</option>
+                              <option value="Economics - Higher level">Economics - Higher level</option><option value="Orienteringskurs Data Officepaketet 1">Orienteringskurs Data Officepaketet 1</option><option value="Programmering 1">Programmering 1</option><option value="Rättskunskap 1">Rättskunskap 1</option>
+                              <option value="Religion Högstadiet">Religion Högstadiet</option><option value="Religion 1">Religion 1</option><option value="Religion 2">Religion 2</option>
+                              <option value="Sociologi 1">Sociologi 1</option><option value="Svenska 1">Svenska 1</option><option value="Svenska 2">Svenska 2</option>
+                              <option value="Svenska 3">Svenska 3</option><option value="Svenska Högstadiet">Svenska Högstadiet</option><option value="Teologi 1">Teologi 1</option>
+                              <option value="Civilrätt 1">Civilrätt 1</option><option value="Högskoleprovet">Högskoleprovet</option><option value="IB">IB</option>
+                              <option value="Natur 1">Natur 1</option><option value="Natur Högstadiet">Natur Högstadiet</option>
+                              <option value="Arts - Standard level">Arts - Standard level</option><option value="Arts - Higher level">Arts - Higher level</option>
+                              <option value="Företagsekonomi 1">Företagsekonomi 1</option><option value="Företagsekonomi 2">Företagsekonomi 2</option>
+                              <option value="Business managment - Standard level">Business managment - Standard level</option>
+                              <option value="Business managment - Higher level">Business managment - Higher level</option><option value="Engelska Högstadiet">Engelska Högstadiet</option>
+                              <option value="Engelska 1">Engelska 1</option><option value="Engelska 2">Engelska 2</option><option value="Engelska 3">Engelska 3</option>
+                              <option value="Engelska 4">Engelska 4</option><option value="Engelska 5">Engelska 5</option><option value="Engelska 6">Engelska 6</option>
+                              <option value="Engelska 7">Engelska 7</option><option value="English - Standard level">English - Standard level</option>
+                              <option value="English - Higher level">English - Higher level</option><option value="Arabiska">Arabiska</option><option value="Armeniska">Armeniska</option>
+                              <option value="Danska">Danska</option><option value="Finska">Finska</option><option value="Franska 3">Franska 3</option><option value="Franska 4">Franska 4</option>
+                              <option value="Franska 5">Franska 5</option><option value="Franska 6">Franska 6</option><option value="Franska Högstadiet">Franska Högstadiet</option>
+                              <option value="Franska 7">Franska 7</option><option value="French - Standard level">French - Standard level</option><option value="French - Higher level">French - Higher level</option><option value="Grekiska">Grekiska</option><option value="Italienska">Italienska</option><option value="Japanska">Japanska</option>
+                              <option value="Kinesiska">Kinesiska</option><option value="Koreanska">Koreanska</option><option value="Portugisiska">Portugisiska</option>
+                              <option value="Ryska">Ryska</option><option value="Spanska Högstadiet">Spanska Högstadiet</option><option value="Spanska 1">Spanska 1</option>
+                              <option value="Spanska 2">Spanska 2</option><option value="Spanska 3">Spanska 3</option><option value="Spanska 4">Spanska 4</option><option value="Spanska 5">Spanska 5</option><option value="Spanska 6">Spanska 6</option><option value="Spanska 7">Spanska 7</option><option value="Spanish - Standard level">Spanish - Standard level</option><option value="Spanish - Higher level">Spanish - Higher level</option><option value="Syrianska">Syrianska</option>
+                              <option value="Syrianska 2">Syrianska 2</option><option value="Syrianska 3">Syrianska 3</option><option value="Syrianska 4">Syrianska 4</option>
+                              <option value="Syrianska 5">Syrianska 5</option><option value="Syrianska 6">Syrianska 6</option><option value="Syrianska 7">Syrianska 7</option>
+                              <option value="Turkiska">Turkiska</option><option value="Turkiska 2">Turkiska 2</option><option value="Turkiska 3">Turkiska 3</option>
+                              <option value="Turkiska 5">Turkiska 5</option><option value="Turkiska 6">Turkiska 6</option><option value="Turkiska 7">Turkiska 7</option>
+                              <option value="Tyska 4">Tyska 4</option><option value="Tyska 5">Tyska 5</option><option value="Tyska 6">Tyska 6</option><option value="Tyska Högstadiet">Tyska Högstadiet</option><option value="German - Standard level">German - Standard level</option> <option value="German - Higher level">German - Higher level</option>
+                              <option value="Tyska 7">Tyska 7</option>
+                            </datalist>
+                        </div>
+            </div>
+            <input type="hidden" name="initiate3" value="start"><br/>
+            <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="del3"> Delete
+                </label>
+            </div>
+            <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
+                      <!---<input type="hidden" name="del" value="del"><br/>
+          <button type="button" value="Del" class="btn btn-primary">Delete</button> -->
+            </form>
+          <br/><br/>
+          <p>The result is <strong>{{{data3}}}</strong>. The total amount in the month is <strong>{{{data3}}}</strong>.</p>
+          <div id="table3_div"></div>
       </div>
       <div id="menu3" class="tab-pane fade in active">
+            <h3>MENU3</h3>
+            <!--<table align="center" border="1"> -->
+            <!--<form name="Form">
+            <div class="form-group row">
+                <label for="example-date-input" class="col-xs-2 col-form-label">Prenom</label>
+                <div class="col-xs-10">
+                  <input class="form-control" type="string" name="prenom1" placeholder="ex:Frank" id="example-date-input">
+                </div>
+            </div>
+            </form>-->
       </div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
