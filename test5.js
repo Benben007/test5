@@ -54,7 +54,7 @@ function getData6(connection, keywork, callback){
 }
 
 function getData8(connection, keywork, callback){
-	query1='delete from Client where Mission.Heure_debut like "' + datetimedebut + '" and Mission.Heure_fin like "' + datetimefin + '" and Mission.PrenomTravailleur like "' + prenomtravailleur + '" and Mission.NomTravailleur like "' + nomtravailleur + '" and Mission.PrenomEleve like "' + prenomeleve3 + '" and Mission.NomEleve like "' + nomeleve3 + '" and Mission.PrenomClient like "' + prenomclient3 + '" and Mission.NomClient like "' + nomclient3 + '" and Mission.Matiere="' + matiere3 + '" '
+	query1='delete from Mission where Mission.Heure_debut ="' + datetimedebut + '" and Mission.Heure_fin= "' + datetimefin + '" and Mission.PrenomTravailleur like "' + prenomtravailleur + '" and Mission.NomTravailleur like "' + nomtravailleur + '" and Mission.PrenomEleve like "' + prenomeleve3 + '" and Mission.NomEleve like "' + nomeleve3 + '" and Mission.PrenomClient like "' + prenomclient3 + '" and Mission.NomClient like "' + nomclient3 + '" and Mission.Matiere="' + matiere3 + '" '
 	console.log(query1)
 	connection.query(query1, callback);
 }
