@@ -14,14 +14,14 @@ function openConnection(){
 }
 
 function getData4(connection, keywork, callback){
-	query1='delete from Travailleur where Travailleur.Prenom like "' + prenom1 + '" and Travailleur.Nom like "' + nom1 + '" and Travailleur.Numeropersonel=' + numeropersonel1 + ' and Travailleur.Telephone=' + telephone1 + ' and Travailleur.Email="' + email1 + '"  and Travailleur.Adresse="' + adresse1 + '" and Travailleur.Matiere="' + matiere1 + '" and Travailleur.Numerocompte="' + numerocompte1 + '" and Travailleur.Dateembauche="' + dateembauche1 + '" and Travailleur.Datefin="' + datefin1 + '" '
+	query1='delete from Travailleur where Travailleur.Prenom like "' + prenom1 + '" and Travailleur.Nom like "' + nom1 + '" and Travailleur.Numeropersonel like "' + numeropersonel1 + '" and Travailleur.Telephone like "' + telephone1 + '" and Travailleur.Email like "' + email1 + '"  and Travailleur.Adresse like "' + adresse1 + '" and Travailleur.Matiere like "' + matiere1 + '" and Travailleur.Numerocompte like "' + numerocompte1 + '" and Travailleur.Dateembauche like "' + dateembauche1 + '" and Travailleur.Datefin like "' + datefin1 + '" '
 	console.log(query1)
 	connection.query(query1, callback);
 }
 
 
 function getData3(connection, keywork, callback){
-	query1='insert into Travailleur(Prenom,Nom,Numeropersonel,Telephone,Email,Adresse,Matiere,Numerocompte,Dateembauche,Datefin) values ("' + prenom1 + '", "' + nom1 + '", ' + numeropersonel1 + ', ' + telephone1 + ', "' + email1 + '", "' + adresse1 + '", "' + matiere1 + '", "' + numerocompte1 + '", "' + dateembauche1 + '", "' + datefin1 + '")'
+	query1='insert into Travailleur(Prenom,Nom,Numeropersonel,Telephone,Email,Adresse,Matiere,Numerocompte,Dateembauche,Datefin) values ("' + prenom1 + '", "' + nom1 + '", "' + numeropersonel1 + '", "' + telephone1 + '", "' + email1 + '", "' + adresse1 + '", "' + matiere1 + '", "' + numerocompte1 + '", "' + dateembauche1 + '", "' + datefin1 + '")'
 	console.log(query1)
 	connection.query(query1, callback);
 }
@@ -29,19 +29,19 @@ function getData3(connection, keywork, callback){
 
 function getData1(connection, keywork, callback){
 	query1='SELECT Prenom as Prenom, Nom as Nom, Numeropersonel as Numeropersonel, Telephone as Telephone, Email as Email, Adresse as Adresse, Matiere as Matiere, Numerocompte as Numerocompte, Dateembauche as Dateembauche, Datefin as Datefin FROM Travailleur'
-	console.log(1)
+	console.log(query1)
 	connection.query(query1, callback);
 }
 
 function getData5(connection, keywork, callback){
-	query1='delete from Client where Client.PrenomClient like "' + prenomclient2 + '" and Client.NomClient like "' + nomclient2 + '" and Client.PrenomEleve like "' + prenomeleve2 + '" and Client.NomEleve like "' + nomeleve2 + '" and Client.Numeropersonel=' + numeropersonel2 + ' and Client.Telephone=' + telephone2 + ' and Client.Email="' + email2 + '"  and Client.Adresse="' + adresse2 + '" and Client.Matiere="' + matiere2 + '" '
+	query1='delete from Client where Client.PrenomClient like "' + prenomclient2 + '" and Client.NomClient like "' + nomclient2 + '" and Client.PrenomEleve like "' + prenomeleve2 + '" and Client.NomEleve like "' + nomeleve2 + '" and Client.Numeropersonel="' + numeropersonel2 + '" and Client.Telephone="' + telephone2 + '" and Client.Email="' + email2 + '"  and Client.Adresse="' + adresse2 + '" and Client.Matiere="' + matiere2 + '" '
 	console.log(query1)
 	connection.query(query1, callback);
 }
 
 
 function getData7(connection, keywork, callback){
-	query1='insert into Client(PrenomClient,NomClient,PrenomEleve,NomEleve,Numeropersonel,Telephone,Email,Adresse,Matiere) values ("' + prenomclient2 + '", "' + nomclient2 + '", "' + prenomeleve2 + '", "' + nomeleve2 + '", ' + numeropersonel2 + ', ' + telephone2 + ', "' + email2 + '", "' + adresse2 + '", "' + matiere2 + '")'
+	query1='insert into Client(PrenomClient,NomClient,PrenomEleve,NomEleve,Numeropersonel,Telephone,Email,Adresse,Matiere) values ("' + prenomclient2 + '", "' + nomclient2 + '", "' + prenomeleve2 + '", "' + nomeleve2 + '", "' + numeropersonel2 + '", "' + telephone2 + '", "' + email2 + '", "' + adresse2 + '", "' + matiere2 + '")'
 	console.log(query1)
 	connection.query(query1, callback);
 }
@@ -73,37 +73,12 @@ function getData9(connection, keywork, callback){
 	connection.query(query1, callback);
 }
 
-function checkAuth(req, res, next) {
-  if (!req.session.user_id) {
-    res.send('You are not authorized to view this page');
-  } else {
-    next();
-  }
-}
-
 var app = express();
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-app.get('/my_secret_page', checkAuth, function (req, res) {
-  res.send('if you are viewing this page it means you are logged in');
-});
-
-app.post('/login', function (req, res) {
-  var post = req.body;
-  if (post.user === 'john' && post.password === 'johnspassword') {
-    req.session.user_id = johns_user_id_here;
-    res.redirect('/my_secret_page');
-  } else {
-    res.send('Bad user/pass');
-  }
-});
-
-app.get('/logout', function (req, res) {
-  delete req.session.user_id;
-  res.redirect('/login');
-});     
+     
  
 app.get('/', function (req, res) {
 
