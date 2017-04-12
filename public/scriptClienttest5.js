@@ -41,8 +41,8 @@ function drawTable2() {
        dat2.addColumn('string', 'Nom Client');
        dat2.addColumn('string', 'Prenom Eleve');
        dat2.addColumn('string', 'Nom Eleve');
-       dat2.addColumn('number', 'Numero personel');
-       dat2.addColumn('number', 'Telephone');
+       dat2.addColumn('string', 'Numero personel');
+       dat2.addColumn('string', 'Telephone');
        dat2.addColumn('string', 'Email');
        dat2.addColumn('string', 'Adresse');
        dat2.addColumn('string', 'Matiere');
@@ -58,12 +58,12 @@ function drawTable() {
        var dat = new google.visualization.DataTable();
        dat.addColumn('string', 'Prenom');
        dat.addColumn('string', 'Nom');
-       dat.addColumn('number', 'Numero personel');
-       dat.addColumn('number', 'Telephone');
+       dat.addColumn('string', 'Numero personel');
+       dat.addColumn('string', 'Telephone');
        dat.addColumn('string', 'Email');
        dat.addColumn('string', 'Adresse');
        dat.addColumn('string', 'Matiere');
-       dat.addColumn('number', 'Numero de compte');
+       dat.addColumn('string', 'Numero de compte');
        dat.addColumn('string', 'Date embauche');
        dat.addColumn('string', 'Date fin');
        dat.addRows(data1);
